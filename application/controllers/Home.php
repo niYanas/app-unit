@@ -25,6 +25,6 @@ class Home extends CI_Controller {
 
 	public function viewNilai(){
 		$data['data'] = $this->Data_model->get_data();
-		$this->load->view('viewNilai', $data);
+		$this->load->view('view_nilai', $data);
 	}
 }

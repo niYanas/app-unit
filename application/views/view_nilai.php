@@ -42,14 +42,14 @@
         content="Material Dashboard PRO is a Premium Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design." />
     <meta property="og:site_name" content="Creative Tim" />
     <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
-    <link href="assets/css/material-dashboard.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/css/material-dashboard.css" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/css/demo.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/css/google-roboto-300-700.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>assets/css/google-roboto-300-700.css" rel="stylesheet" />
 </head>
 
 
@@ -57,7 +57,7 @@
 <body>
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black"
-            data-image="../../assets/img/sidebar-1.jpg">
+            data-image="<?= base_url() ?>/assets/img/sidebar-1.jpg">
             <!--
         Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
         Tip 2: you can also add an image using data-image tag
@@ -76,7 +76,7 @@
             <div class="sidebar-wrapper">
                 <div class="user">
                     <div class="photo">
-                        <img src="../../assets/img/faces/avatar.jpg" />
+                        <img src="<?= base_url() ?>assets/img/faces/avatar.jpg" />
                     </div>
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -489,76 +489,12 @@
                             </div> -->
                             <!-- End Modal Nilai -->
 
-                            <!-- Modal View-->
-                            <div class="modal fade" id="viewModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Lihat Data</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <?= form_open('Home/tambahIndikator'); ?>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">UNIT ID</label>
-                                                <input type="text" class="form-control" id="unit_id" name="unit_id">
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Judul Indikator</label>
-                                                <input type="text" class="form-control" id="judul" name="judul">
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Numerator</label>
-                                                <input type="text" class="form-control" id="numerator" name="numerator">
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Denumerator</label>
-                                                <input type="text" class="form-control" id="denumerator"
-                                                    name="denumerator">
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Standar</label>
-                                                <input type="text" class="form-control" id="standar" name="standar">
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Pencapaian</label>
-                                                <input type="text" class="form-control" id="pencapaian"
-                                                    name="pencapaian">
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Keterangan</label>
-                                                <input type="text" class="form-control" id="ket" name="ket">
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </div>
-                                        <?= form_close(); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal View-->
-
                             <!-- Tabel Data Indikator -->
                             <div class="card">
                                 <div class="card-header card-header-icon" data-background-color="rose">
                                     <i class="material-icons">assignment</i>
                                 </div>
                                 <h4 class="card-title">Tabel Data Indikator</h4>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#addIndikatorModal"><i class="fa fa-plus"></i>
-                                    Tambah Indikator
-                                </button>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#addNilaiModal"><i class="fa fa-plus"></i>
                                     Tambah Nilai
