@@ -559,9 +559,8 @@
                                     data-target="#addIndikatorModal"><i class="fa fa-plus"></i>
                                     Tambah Indikator
                                 </button>
-                                <button type="button" class="btn btn-primary"
-                                    onclick="location.href='<?= base_url();?>home/viewNilai'"><i class="fa fa-plus">
-                                    </i>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#addNilaiModal"><i class="fa fa-plus"></i>
                                     Tambah Nilai
                                 </button>
                                 <div class="card-content">

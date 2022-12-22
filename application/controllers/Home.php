@@ -22,4 +22,9 @@ class Home extends CI_Controller {
     	$this->load->model('Data_model', 'model');
 		$this->model->tambahNilai();
     }
+
+	public function viewNilai(){
+		$data['data'] = $this->Data_model->get_data();
+		$this->load->view('viewNilai', $data);
+	}
 }
