@@ -394,7 +394,7 @@
                                 <div class="card-header card-header-icon" data-background-color="rose">
                                     <i class="material-icons">assignment</i>
                                 </div>
-                                <h4 class="card-title">Tabel Data Penilaian</h4>
+                                <h4 class="card-title">Form Input Penilaian</h4>
                                 <div class="card-content">
                                     <div class="table-responsive">
                                         <table class="table" id="indikator">
@@ -403,9 +403,42 @@
                                                     <td>No.</td>
                                                     <!-- <th>Unit</th> -->
                                                     <td>Judul Indikator</td>
+                                                    <td>Nilai</td>
                                                     <td>Numerator</td>
+                                                    <td>Nilai</td>
                                                     <td>Denumerator</td>
-                                                    <td class="text-right">Actions</td>
+                                                    <td>Nilai</td>
+                                                    <td class="text-center">Actions</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Tabel Data Indikator -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Tabel Data Indikator -->
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="rose">
+                                    <i class="material-icons">assignment</i>
+                                </div>
+                                <h4 class="card-title">Tabel Data Penilaian</h4>
+                                <div class="card-content">
+                                    <div class="table-responsive">
+                                        <table class="table" id="data">
+                                            <thead>
+                                                <tr>
+                                                    <td>No.</td>
+                                                    <!-- <th>Unit</th> -->
+                                                    <td>Indikator Unit</td>
+                                                    <td>Tanggal</td>
+                                                    <td class="text-center">Actions</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -642,6 +675,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $("#judul").change(function() {
         indikatorJudul();
+        indikatorData();
     });
 });
 
@@ -655,6 +689,20 @@ function indikatorJudul() {
             //     '<tr><td class="col-md-10" align="center">Tidak ada data</td></tr>'
             // )
             $("#indikator tbody").html(data);
+        }
+    });
+}
+
+function indikatorData() {
+    var judul = $("#judul").val();
+    $.ajax({
+        url: "<?= base_url("Home/load_data"); ?>",
+        data: "judul=" + judul,
+        success: function(data) {
+            // $("#indikator tbody").html(
+            //     '<tr><td class="col-md-10" align="center">Tidak ada data</td></tr>'
+            // )
+            $("#data tbody").html(data);
         }
     });
 }
