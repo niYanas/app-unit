@@ -332,206 +332,84 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
-
-                            <!-- Modal Tambah Indikator-->
-                            <div class="modal fade" id="addIndikatorModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <?= form_open('Home/tambahIndikator'); ?>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">UNIT ID</label>
-                                                <input type="text" class="form-control" id="unit_id" name="unit_id">
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Judul Indikator</label>
-                                                <input type="text" class="form-control" id="judul" name="judul">
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Numerator</label>
-                                                <input type="text" class="form-control" id="numerator" name="numerator">
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Denumerator</label>
-                                                <input type="text" class="form-control" id="denumerator"
-                                                    name="denumerator">
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Standar</label>
-                                                <input type="text" class="form-control" id="standar" name="standar">
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Pencapaian</label>
-                                                <input type="text" class="form-control" id="pencapaian"
-                                                    name="pencapaian">
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Keterangan</label>
-                                                <input type="text" class="form-control" id="ket" name="ket">
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </div>
-                                        <?= form_close(); ?>
-                                    </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="rose">
+                                    <i class="material-icons">today</i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">Judul Indikator</h4>
+                                    <select class="selectpicker" data-style="select-with-transition"
+                                        title="Pilih Indikator Judul" name="judul" id="judul">
+                                        <?php foreach($data as $d) : ?>
+                                        <option id="indikator_id" value="<?= $d->id?>">
+                                            <?= $d->judul ?>
+                                        </option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                             </div>
-                            <!-- End Modal Tambah Indikator-->
-
-                            <!-- Modal Nilai-->
-                            <!-- <div class="modal fade" id="addNilaiModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="<?= base_url('home/tambahNilai') ?>" method="post">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Unit ID</label>
-                                                    <input type="text" class="form-control" id="unit_id" name="unit_id">
-                                                </div>
-                                                <div class=" row">
-                                                    <div class="col-md-10">
-                                                        <div class="form-group label-floating">
-                                                            <select class="selectpicker"
-                                                                data-style="select-with-transition"
-                                                                title="Pilih Indikator Judul" name="indikator_id">
-                                                                <?php foreach($data as $d) : ?>
-                                                                <option id="indikator_id" value="<?= $d->id?>">
-                                                                    <?= $d->judul ?>
-                                                                </option>
-                                                                <?php endforeach ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Nilai</label>
-                                                            <input name="nJudul" id="nJudul" type="number"
-                                                                class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-10">
-                                                        <div class="form-group label-floating">
-                                                            <select class="selectpicker"
-                                                                data-style="select-with-transition"
-                                                                title="Pilih Numerator">
-                                                                <?php foreach($data as $d) : ?>
-                                                                <option value="<?= $d->id?>">
-                                                                    <?= $d->numerator ?>
-                                                                </option>
-                                                                <?php endforeach ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Nilai</label>
-                                                            <input name="nNum" type="number" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-10">
-                                                        <div class="form-group label-floating">
-                                                            <select class="selectpicker"
-                                                                data-style="select-with-transition"
-                                                                title="Pilih Denumerator">
-                                                                <?php foreach($data as $d) : ?>
-                                                                <option value="<?= $d->id?>"><?= $d->denumerator ?>
-                                                                </option>
-                                                                <?php endforeach ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Nilai</label>
-                                                            <input name="nDenum" type="number" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Tanggal</label>
-                                                            <input type="date" class="form-control" name="tanggal">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </div>
-                                        <?= form_close(); ?>
-                                    </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="rose">
+                                    <i class="material-icons">library_books</i>
                                 </div>
-                            </div> -->
-                            <!-- End Modal Nilai -->
-
+                                <div class="card-content">
+                                    <h4 class="card-title">Numerator</h4>
+                                    <select class="selectpicker" data-style="select-with-transition"
+                                        title="Pilih Numerator" name="numerator" id="numerator">
+                                        <?php foreach($data as $d) : ?>
+                                        <option id="indikator_id" value="<?= $d->id?>">
+                                            <?= $d->numerator ?>
+                                        </option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="rose">
+                                    <i class="material-icons">av_timer</i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">Denumerator</h4>
+                                    <select class="selectpicker" data-style="select-with-transition"
+                                        title="Pilih Denumerator" name="denumerator" id="denumerator">
+                                        <?php foreach($data as $d) : ?>
+                                        <option id="indikator_id" value="<?= $d->id?>">
+                                            <?= $d->denumerator ?>
+                                        </option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <!-- Tabel Data Indikator -->
                             <div class="card">
                                 <div class="card-header card-header-icon" data-background-color="rose">
                                     <i class="material-icons">assignment</i>
                                 </div>
-                                <h4 class="card-title">Tabel Data Indikator</h4>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#addNilaiModal"><i class="fa fa-plus"></i>
-                                    Tambah Nilai
-                                </button>
+                                <h4 class="card-title">Tabel Data Penilaian</h4>
                                 <div class="card-content">
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" id="indikator">
                                             <thead>
                                                 <tr>
-                                                    <th>No.</th>
-                                                    <th>Unit</th>
-                                                    <th>Judul Indikator</th>
-                                                    <th>Numerator</th>
-                                                    <th>Denumerator</th>
-                                                    <th class="text-right">Actions</th>
+                                                    <td>No.</td>
+                                                    <!-- <th>Unit</th> -->
+                                                    <td>Judul Indikator</td>
+                                                    <td>Numerator</td>
+                                                    <td>Denumerator</td>
+                                                    <td class="text-right">Actions</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $no = 1; foreach($data as $d): ?>
-                                                <tr>
-                                                    <td><?= $no++; ?></td>
-                                                    <td><?= $d->nama_unit ?></td>
-                                                    <td><?= $d->judul ?></td>
-                                                    <td><?= $d->numerator ?></td>
-                                                    <td><?= $d->denumerator ?></td>
-                                                    <td class="text-right">
-                                                        <a data-toggle="modal" data-target=""
-                                                            class="btn btn-simple btn-info btn-icon like"><i
-                                                                class="material-icons">add</i></a>
-                                                        <a data-toggle="modal" data-target="#viewModal"
-                                                            class="btn btn-simple btn-warning btn-icon edit"><i
-                                                                class="material-icons">visibility</i></a>
-                                                        <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i
-                                                                class="material-icons">delete_forever</i></a>
-                                                    </td>
-                                                </tr>
-                                                <?php endforeach ?>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -674,54 +552,52 @@
     </div>
 </body>
 <!--   Core JS Files   -->
-<script src="assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
-<script src="assets/js/jquery-ui.min.js" type="text/javascript"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/js/material.min.js" type="text/javascript"></script>
-<script src="assets/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/js/material.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
 <!-- Forms Validations Plugin -->
-<script src="assets/js/jquery.validate.min.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery.validate.min.js"></script>
 <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-<script src="assets/js/moment.min.js"></script>
+<script src="<?= base_url() ?>assets/js/moment.min.js"></script>
 <!--  Charts Plugin -->
-<script src="assets/js/chartist.min.js"></script>
+<script src="<?= base_url() ?>assets/js/chartist.min.js"></script>
 <!--  Plugin for the Wizard -->
-<script src="assets/js/jquery.bootstrap-wizard.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery.bootstrap-wizard.js"></script>
 <!--  Notifications Plugin    -->
-<script src="assets/js/bootstrap-notify.js"></script>
+<script src="<?= base_url() ?>assets/js/bootstrap-notify.js"></script>
 <!--   Sharrre Library    -->
-<script src="assets/js/jquery.sharrre.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery.sharrre.js"></script>
 <!-- DateTimePicker Plugin -->
-<script src="assets/js/bootstrap-datetimepicker.js"></script>
+<script src="<?= base_url() ?>assets/js/bootstrap-datetimepicker.js"></script>
 <!-- Vector Map plugin -->
-<script src="assets/js/jquery-jvectormap.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery-jvectormap.js"></script>
 <!-- Sliders Plugin -->
-<script src="assets/js/nouislider.min.js"></script>
+<script src="<?= base_url() ?>assets/js/nouislider.min.js"></script>
 <!--  Google Maps Plugin    -->
 <!--<script src="https://maps.googleapis.com/maps/api/js"></script>-->
 <!-- Select Plugin -->
-<script src="assets/js/jquery.select-bootstrap.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery.select-bootstrap.js"></script>
 <!--  DataTables.net Plugin    -->
-<script src="assets/js/jquery.datatables.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery.datatables.js"></script>
 <!-- Sweet Alert 2 plugin -->
-<script src="assets/js/sweetalert2.js"></script>
+<script src="<?= base_url() ?>assets/js/sweetalert2.js"></script>
 <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-<script src="assets/js/jasny-bootstrap.min.js"></script>
+<script src="<?= base_url() ?>assets/js/jasny-bootstrap.min.js"></script>
 <!--  Full Calendar Plugin    -->
-<script src="assets/js/fullcalendar.min.js"></script>
+<script src="<?= base_url() ?>assets/js/fullcalendar.min.js"></script>
 <!-- TagsInput Plugin -->
-<script src="assets/js/jquery.tagsinput.js"></script>
+<script src="<?= base_url() ?>assets/js/jquery.tagsinput.js"></script>
 <!-- Material Dashboard javascript methods -->
-<script src="assets/js/material-dashboard.js"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
-<script type="text/javascript">
+<script src="<?= base_url() ?>assets/js/material-dashboard.js"></script>
+<!-- <script type="text/javascript">
 $(document).ready(function() {
     md.initSliders()
     demo.initFormExtendedDatetimepickers();
 });
-</script>
-<script type="text/javascript">
+</script> -->
+<!-- <script type="text/javascript">
 $(document).ready(function() {
     $('#datatables').DataTable({
         "pagingType": "full_numbers",
@@ -761,6 +637,27 @@ $(document).ready(function() {
 
     $('.card .material-datatables label').addClass('form-group');
 });
+</script> -->
+<script>
+$(document).ready(function() {
+    $("#judul").change(function() {
+        indikatorJudul();
+    });
+});
+
+function indikatorJudul() {
+    var judul = $("#judul").val();
+    $.ajax({
+        url: "<?= base_url("Home/load_judul"); ?>",
+        data: "judul=" + judul,
+        success: function(data) {
+            // $("#indikator tbody").html(
+            //     '<tr><td class="col-md-10" align="center">Tidak ada data</td></tr>'
+            // )
+            $("#indikator tbody").html(data);
+        }
+    });
+}
 </script>
 
 
