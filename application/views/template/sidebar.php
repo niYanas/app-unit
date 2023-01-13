@@ -42,6 +42,25 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?=base_url('indikator')?>">
+                            <i class="material-icons">dashboard</i>
+                            <p>Indikator</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url('numerator')?>">
+                            <i class="material-icons">dashboard</i>
+                            <p>Numerator / Denumerator</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url('subnumerator')?>">
+                            <i class="material-icons">dashboard</i>
+                            <p>Sub Numerator / Denumerator</p>
+                        </a>
+                    </li>
+                  
                 </ul>
             </div>
         </div>
