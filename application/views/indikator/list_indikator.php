@@ -17,14 +17,28 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Indikator</th>
                                     <th>Judul Indikator</th>
                                     <th>Unit</th>
-                                    <th class="text-right">Actions</th>
+                                    <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <?php 
+                                $i=1;
+                                 foreach($indikators as $indikator){ ?>
+                                    <tr>
+                                        <td><?=$i?></td>
+                                        <td><?=$indikator->judul?></td>
+                                        <td><?=$indikator->tb_nama?></td>
+                                        <td align="center">
+                                        <?php
+                                            echo anchor(site_url('indikator/update/' . $indikator->id), '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>', array("class" => "btn btn-warning btn-xs btn-flat", "data-toggle" => "tooltip", "data-placement" => "top", "title" => "update"));
+                                            echo ' ';
+                                            echo anchor(site_url('indikator/delete/' . $indikator->id), '<i class="fa fa-remove"></i>', array("class" => "btn btn-danger btn-xs btn-flat", 'onclick' => 'javasciprt: return confirm(\'Are You Sure ?\')"'), 'onclick="javasciprt: ');
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php $i++; } ?>
                             </tbody>
                         </table>
                     </div>

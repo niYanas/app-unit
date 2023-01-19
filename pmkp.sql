@@ -83,6 +83,43 @@ insert  into `indikator_unit`(`id`,`indikator_id`,`judul`,`numerator`,`denumerat
 (4,5,'Pemberi pelayanan dengan persalinan normal dokter SpOG dan bidan sudah terlatih APN','Jumlah pasien kamar bersalin dengan persalinan normal yang di tangani tenaga dokter SpOG,dan bidan terlatih     ( Asuhan Persalinan Normal ) yang di survei','Jumlah pasien persalinan normal dikamar bersalin yang disurvei'),
 (5,6,'\"Pemberi pelayanan persalinan dengan penyulit dr. Sp.OG,  dr Sp.A dan bidan terlatih\"','Jumlah pasien persalinan dengan penyulit dikamar bersalin yang ditangani tenaga dokter Sp.OG,bidan yang terlatih','Jumlah pasien persalinan dengan penyulit dikamar bersalin yang disurvei');
 
+/*Table structure for table `master_indikator` */
+
+DROP TABLE IF EXISTS `master_indikator`;
+
+CREATE TABLE `master_indikator` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `judul` text,
+  `unit` varchar(30) DEFAULT NULL,
+  `isdeleted` int(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `master_indikator` */
+
+insert  into `master_indikator`(`id`,`judul`,`unit`,`isdeleted`) values 
+(1,'Waktu Tunggu Rawat Inap < 6 jam','B-GD-001',0),
+(2,'Kepatuhan Identifikasi Pasien','B-GD-001',0),
+(3,'Kejadian kematian Ibu krn Eklampsi/Preeklampsi','B-GD-001',0),
+(4,'Kepuasan pasien (pelanggan) terhadap pelayanan IGD','B-GD-001',0),
+(5,'kepatuhan pencegahan pasien jatuh','B-GD-001',0);
+
+/*Table structure for table `master_numerator` */
+
+DROP TABLE IF EXISTS `master_numerator`;
+
+CREATE TABLE `master_numerator` (
+  `idnum` int(10) NOT NULL AUTO_INCREMENT,
+  `unit` varchar(10) DEFAULT NULL,
+  `jenis` varchar(20) DEFAULT NULL,
+  `indikator` int(10) DEFAULT NULL,
+  `deskripsi` text,
+  `standar` int(10) DEFAULT NULL,
+  PRIMARY KEY (`idnum`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `master_numerator` */
+
 /*Table structure for table `temp_bidang` */
 
 DROP TABLE IF EXISTS `temp_bidang`;

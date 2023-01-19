@@ -17,7 +17,7 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Indikator</th>
+                                    <th>Indikator</th>
                                     <th>Nemurator / Denumerator</th>
                                     <th>Deskripsi</th>
                                     <th>Target</th>
