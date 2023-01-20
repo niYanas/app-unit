@@ -8,7 +8,7 @@ class Numerator_model extends CI_Model{
 
 
     public $id_unit = 'tb_id';
-    public $id='id';
+    public $id='idnum';
 
     public $order_unit = 'DESC';
     public $order='DESC';
@@ -24,7 +24,7 @@ class Numerator_model extends CI_Model{
     }
 
     public function get_all_indikator($unit){
-        $this->db->select('id,judul');
+        $this->db->select('id as value,judul as text');
         $this->db->where('unit', $unit);
         $this->db->where('isdeleted', '0');
         return $this->db->get('master_indikator')->result();
@@ -34,17 +34,14 @@ class Numerator_model extends CI_Model{
      function get_limit_data()
      {
          $this->db->order_by($this->id, $this->order);
-         $this->db->join('temp_bidang','temp_bidang.tb_id=master_numerator.unit','inner');
-         $this->db->join('master_indikator','master_indikator.id=master_numerator.indikator','inner');
-         $this->db->where('isdeleted', '0');
-         return $this->db->get($this->table)->result();
+          $this->db->where('isdeletednum', '0');
+         return $this->db->get('view_numerator')->result();
      }
  
       // get total rows
       function total_rows() {
-         $this->db->from($this->table);
-         $this->db->join('master_indikator','master_indikator.id=master_numerator.indikator','inner');
-         $this->db->where('isdeleted', '0');
+         $this->db->from('view_numerator');
+         $this->db->where('isdeletednum', '0');
          return $this->db->count_all_results();
      }
  
@@ -52,9 +49,8 @@ class Numerator_model extends CI_Model{
      function total_rows_search($q = NULL)
      {
          $this->db->like($q);
-         $this->db->from($this->table);
-         $this->db->join('master_indikator','master_indikator.id=master_numerator.indikator','inner');
-         $this->db->where('isdeleted', '0');
+         $this->db->from('view_numerator');
+         $this->db->where('isdeletednum', '0');
          return $this->db->count_all_results();
      }
  
@@ -63,12 +59,30 @@ class Numerator_model extends CI_Model{
      {
          $this->db->order_by($this->id, $this->order);
          $this->db->like($q);
-         $this->db->join('master_indikator','master_indikator.id=master_numerator.indikator','inner');
-         $this->db->limit($limit, $start);
-         $this->db->where('isdeleted', '0');
-         return $this->db->get($this->table)->result();
+          $this->db->limit($limit, $start);
+         $this->db->where('isdeletednum', '0');
+         return $this->db->get('view_numerator')->result();
      }
 
 
+       // insert data
+    function insert($data)
+    {
+        $this->db->insert($this->table, $data);
+        return ($this->db->affected_rows() != 1) ? false : true;
+    }
 
+    // update data
+    function update($id, $data)
+    {
+        $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);
+    }
+
+    // delete data
+    function delete($id)
+    {
+        $this->db->where($this->id, $id);
+        $this->db->update($this->table, array('isdeleted'=>'1'));
+    }
 }

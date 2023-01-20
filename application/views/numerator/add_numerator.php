@@ -31,11 +31,11 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="int">Numerator / Denumerator </label>
-                                <select class="form-control" name="indikator" id="indikator">
+                                <label for="int">Jenis Nilai</label>
+                                <select class="form-control" name="jenis" id="jenis">
                                     <option value=" "></option>
-                                    <option value="num">Numerator</option>
-                                    <option value="denum">Denumerator</option>
+                                    <option value="numerator">Numerator</option>
+                                    <option value="denumerator">Denumerator</option>
                                 </select>
                             </div>
                         </div>
@@ -63,19 +63,21 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label for="int">Deskripsi</label>
-                                <input type="text" name="deskripsi" class="form-control">
+                                <input type="text" name="deskripsi" id="deskripsi" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="int">Standar Nilai</label>
-                                <input type="text" name="nilai" class="form-control">
+                                <input type="text" name="nilai" id="nilai" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php echo $button ?></button>
+                            <input type="hidden" value="<?=$status?>" id="status">
+                            <input type="hidden" value="<?=$id?>" id="id">
+                            <button type="button" id="add_numerator" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php echo $button ?></button>
                             <a href="<?= base_url('numerator') ?>" class="btn btn-default">Cancel</a>
                         </div>
                     </div>

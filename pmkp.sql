@@ -110,15 +110,20 @@ DROP TABLE IF EXISTS `master_numerator`;
 
 CREATE TABLE `master_numerator` (
   `idnum` int(10) NOT NULL AUTO_INCREMENT,
-  `unit` varchar(10) DEFAULT NULL,
+  `unit` varchar(20) DEFAULT NULL,
   `jenis` varchar(20) DEFAULT NULL,
   `indikator` int(10) DEFAULT NULL,
   `deskripsi` text,
   `standar` int(10) DEFAULT NULL,
+  `isdeletednum` int(1) DEFAULT '0',
   PRIMARY KEY (`idnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `master_numerator` */
+
+insert  into `master_numerator`(`idnum`,`unit`,`jenis`,`indikator`,`deskripsi`,`standar`,`isdeletednum`) values 
+(4,'B-GD-001','numerator',1,'Jumlah  pasien yang akan  rawat inap dari   IGD yang < dari 6 jam',100,0),
+(5,'B-GD-001','denumerator',1,'Jumlah seluruh pasien yang dirawat inap dari  IGD',100,0);
 
 /*Table structure for table `temp_bidang` */
 
@@ -269,6 +274,23 @@ CREATE TABLE `unit` (
 insert  into `unit`(`id`,`nama_unit`) values 
 (1,'IKB');
 
+/*Table structure for table `view_numerator` */
+
+DROP TABLE IF EXISTS `view_numerator`;
+
+/*!50001 DROP VIEW IF EXISTS `view_numerator` */;
+/*!50001 DROP TABLE IF EXISTS `view_numerator` */;
+
+/*!50001 CREATE TABLE  `view_numerator`(
+ `idnum` int(10) ,
+ `unit` varchar(165) ,
+ `jenis` varchar(20) ,
+ `indikator` text ,
+ `deskripsi` text ,
+ `standar` int(10) ,
+ `isdeletednum` int(1) 
+)*/;
+
 /*Table structure for table `view_temp_bidang` */
 
 DROP TABLE IF EXISTS `view_temp_bidang`;
@@ -285,6 +307,13 @@ DROP TABLE IF EXISTS `view_temp_bidang`;
  `tb_dashboard` varchar(20) ,
  `tb_nama_syarat` varchar(64) 
 )*/;
+
+/*View structure for view view_numerator */
+
+/*!50001 DROP TABLE IF EXISTS `view_numerator` */;
+/*!50001 DROP VIEW IF EXISTS `view_numerator` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_numerator` AS (select `master_numerator`.`idnum` AS `idnum`,concat(`view_temp_bidang`.`tb_nama_syarat`,' ',`view_temp_bidang`.`tb_nama`) AS `unit`,`master_numerator`.`jenis` AS `jenis`,`master_indikator`.`judul` AS `indikator`,`master_numerator`.`deskripsi` AS `deskripsi`,`master_numerator`.`standar` AS `standar`,`master_numerator`.`isdeletednum` AS `isdeletednum` from ((`master_numerator` join `view_temp_bidang` on((`master_numerator`.`unit` = `view_temp_bidang`.`tb_id`))) join `master_indikator` on((`master_numerator`.`indikator` = `master_indikator`.`id`)))) */;
 
 /*View structure for view view_temp_bidang */
 

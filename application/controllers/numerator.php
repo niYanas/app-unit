@@ -42,6 +42,7 @@ class Numerator extends CI_Controller
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
+            'nums' => $numerator
         );
 
         $this->template->load('template/template_backend', 'numerator/list_numerator',$data);
@@ -50,14 +51,30 @@ class Numerator extends CI_Controller
     public function add(){
         $data=array(
             'button' => 'Create',
-            'javascript' => 'assets/js/pmkp/numerator.js',
+            'javascript' => 'assets/js/pmkp/numeratorxx.js',
+            'status' => 'add',
+            'id' => '0',
         );
         $data['units']=$this->numerator->get_all_unit();
         $this->template->load('template/template_backend', 'numerator/add_numerator',$data);
     }
 
+    public function add_action(){
+        $result=$this->numerator->insert(
+            array(                
+                'unit'=>$this->input->post('unit'),
+                'jenis'=>$this->input->post('jenis'),
+                'indikator'=>$this->input->post('indikator'),
+                'deskripsi'=>$this->input->post('deskripsi'),
+                'standar'=>$this->input->post('nilai')
+            )
+        );
+        echo $result;
+    }
+
     public function cari_indikator_unit(){
-        $this->numerator->get_all_indikator($this->input->post('unit'));
+        $hasil = $this->numerator->get_all_indikator($this->input->post('unit'));
+        echo json_encode($hasil);
     }
 
 }

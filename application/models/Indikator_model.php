@@ -89,10 +89,4 @@ class Indikator_model extends CI_Model{
         $this->db->update($this->table, array('isdeleted'=>'1'));
     }
 
-     // delete data
-     function delete_all_by_hrd($id)
-     {
-         $this->db->where('tha_hrd', $id);
-         $this->db->delete($this->table);
-     }
 }
