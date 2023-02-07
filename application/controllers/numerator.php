@@ -10,7 +10,7 @@ class Numerator extends CI_Controller
     {
         parent::__construct();
        $this->load->model('Numerator_model', 'numerator');
-       $this->js='assets/js/pmkp/numerator.js';
+       $this->js='assets/js/pmkp/numeratorxx.js';
     }
 
     public function index()
@@ -76,7 +76,8 @@ class Numerator extends CI_Controller
                 'deskripsi'=>$this->input->post('deskripsi'),
                 'operator'=>$this->input->post('operator'),
                 'standar'=>$this->input->post('nilai'),
-                'mutu_rs'=>$this->input->post('mutu')
+                'mutu_rs'=>$this->input->post('mutu'),
+                'kode_mutu_rs'=>$this->input->post('kode_mutu_rs')
             )
         );
         echo $result;
@@ -98,6 +99,7 @@ class Numerator extends CI_Controller
             'operator' => $row->operator,
             'nilai' => $row->standar,
             'mutu'=>$row->mutu_rs,
+            'kode_mutu_rs'=>$row->kode_mutu_rs,
             'kodes'=>$this->numerator->get_all_kode()
         );
        $this->template->load('template/template_backend', 'numerator/add_numerator',$data);
@@ -113,7 +115,8 @@ class Numerator extends CI_Controller
                 'deskripsi'=>$this->input->post('deskripsi'),
                 'operator'=>$this->input->post('operator'),
                 'standar'=>$this->input->post('nilai'),
-                'mutu_rs'=>$this->input->post('mutu')
+                'mutu_rs'=>$this->input->post('mutu'),
+                'kode_mutu_rs'=>$this->input->post('kode_mutu_rs')
             )
         );
         echo "1";

@@ -63,19 +63,19 @@
                     <li>
                         <a href="<?=base_url('starkes')?>">
                             <i class="material-icons">dashboard</i>
-                            <p>Starkes Unit</p>
+                            <p>Isi Starkes</p>
                         </a>
                     </li>
                     <li>
                         <a href="<?=base_url('starkes_monitoring')?>">
                             <i class="material-icons">dashboard</i>
-                            <p>Starkes Monitoring</p>
+                            <p>Monitoring Unit</p>
                         </a>
                     </li>
                     <li>
                         <a href="<?=base_url('starkes_rs')?>">
                             <i class="material-icons">dashboard</i>
-                            <p>Starkes RS</p>
+                            <p>Monitoring RS</p>
                         </a>
                     </li>
                 </ul>
