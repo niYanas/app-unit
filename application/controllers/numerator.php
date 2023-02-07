@@ -10,6 +10,7 @@ class Numerator extends CI_Controller
     {
         parent::__construct();
        $this->load->model('Numerator_model', 'numerator');
+       $this->js='assets/js/pmkp/numerator.js';
     }
 
     public function index()
@@ -51,11 +52,18 @@ class Numerator extends CI_Controller
     public function add(){
         $data=array(
             'button' => 'Create',
-            'javascript' => 'assets/js/pmkp/numeratorxx.js',
+            'javascript' => $this->js,
             'status' => 'add',
             'id' => '0',
+            'kodeunit' => '',
+            'jenis' => '',
+            'deskripsi'=>'',
+            'nilai'=>'',
+            'operator'=>'',
+            'mutu'=>'',
+            'units'=>$this->numerator->get_all_unit(),
+            'kodes'=>$this->numerator->get_all_kode()
         );
-        $data['units']=$this->numerator->get_all_unit();
         $this->template->load('template/template_backend', 'numerator/add_numerator',$data);
     }
 
@@ -66,10 +74,54 @@ class Numerator extends CI_Controller
                 'jenis'=>$this->input->post('jenis'),
                 'indikator'=>$this->input->post('indikator'),
                 'deskripsi'=>$this->input->post('deskripsi'),
-                'standar'=>$this->input->post('nilai')
+                'operator'=>$this->input->post('operator'),
+                'standar'=>$this->input->post('nilai'),
+                'mutu_rs'=>$this->input->post('mutu')
             )
         );
         echo $result;
+    }
+
+    public function update($id=null){
+        $row=$this->numerator->get_by_id($id);
+        $data=array(
+            'button' => 'Update',
+            'javascript' => $this->js,
+            'status' => 'update',
+            'id' => $row->idnum,
+            'kodeunit' => $row->kodeunit,
+            'jenis' => $row->jenis,
+            'units' => $this->numerator->get_all_unit(),
+            'kdindikator' => $row->kdindikator,
+            'indikators' => $this->numerator->get_all_indikator($row->kodeunit),
+            'deskripsi' => $row->deskripsi,
+            'operator' => $row->operator,
+            'nilai' => $row->standar,
+            'mutu'=>$row->mutu_rs,
+            'kodes'=>$this->numerator->get_all_kode()
+        );
+       $this->template->load('template/template_backend', 'numerator/add_numerator',$data);
+    }
+
+    public function update_action($id=null){
+        $result=$this->numerator->update(
+            $this->input->post('id'),
+            array(                
+                'unit'=>$this->input->post('unit'),
+                'jenis'=>$this->input->post('jenis'),
+                'indikator'=>$this->input->post('indikator'),
+                'deskripsi'=>$this->input->post('deskripsi'),
+                'operator'=>$this->input->post('operator'),
+                'standar'=>$this->input->post('nilai'),
+                'mutu_rs'=>$this->input->post('mutu')
+            )
+        );
+        echo "1";
+    }
+
+    public function delete($id=null){
+        $this->numerator->delete($id);
+        redirect('numerator');
     }
 
     public function cari_indikator_unit(){

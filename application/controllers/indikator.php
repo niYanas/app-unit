@@ -8,6 +8,7 @@ class Indikator extends CI_Controller
     {
         parent::__construct();
        $this->load->model('Indikator_model', 'indikator');
+       $this->js='assets/js/pmkp/indikator.js';
     }
 
     public function index()
@@ -15,23 +16,24 @@ class Indikator extends CI_Controller
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
 
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'surat_keluar/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'surat_keluar/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'surat_keluar/index.html';
-            $config['first_url'] = base_url() . 'surat_keluar/index.html';
-        }
-
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
-        if (empty($q)){
-            $config['total_rows'] = $this->indikator->total_rows();
-            $indikator = $this->indikator->get_limit_data($config['per_page'], $start);
-        } else {
+
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'indikator?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'indikator?q=' . urlencode($q);
+
             $config['total_rows'] = $this->indikator->total_rows_search($q);
-            $indikator = $this->indikator->get_limit_data_search($config['per_page'], $start, $q);
+            $indikator = $this->indikator->get_limit_data_search($config['per_page'], $start, $q);          
+        } else {
+            $config['base_url'] = base_url() . 'indikator';
+            $config['first_url'] = base_url() . 'indikator';
+
+            $config['total_rows'] = $this->indikator->total_rows();
+            $indikator = $this->indikator->get_limit_data();
         }
+
+       
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
@@ -42,7 +44,6 @@ class Indikator extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-
         $this->template->load('template/template_backend', 'indikator/list_indikator',$data);
     }
 
@@ -51,7 +52,7 @@ class Indikator extends CI_Controller
             'button' => 'Create',
             'status' => 'add',
             'id' => '0',
-            'javascript' => 'assets/js/pmkp/indikator.js',
+            'javascript' => $this->js,
             'judul' =>'',
             'unitx' => '',
             'units' => $this->indikator->get_all_unit()
@@ -76,7 +77,7 @@ class Indikator extends CI_Controller
         $data=array(
             'button' => 'Update',
             'status' => 'edit',
-            'javascript' => 'assets/js/pmkp/indikator.js',
+            'javascript' => $this->js,
             'id' => $row->id,
             'judul' => $row->judul,
             'unitx' => $row->unit,

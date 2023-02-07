@@ -36,7 +36,7 @@
                                     <td><?=$num->indikator?></td>
                                     <td><?=$num->jenis?></td>
                                     <td><?=$num->deskripsi?></td>
-                                    <td><?=$num->standar?></td>
+                                    <td><?=$num->operator.' '.$num->standar?></td>
                                     <td align="center">
                                         <?php
                                             echo anchor(site_url('numerator/update/' . $num->idnum), '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>', array("class" => "btn btn-warning btn-xs btn-flat", "data-toggle" => "tooltip", "data-placement" => "top", "title" => "update"));

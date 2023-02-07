@@ -1,4 +1,3 @@
-
 <section class="content-header">
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> PMKP</a></li>
@@ -41,6 +40,14 @@
                                 <?php $i++; } ?>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-primary btn-sm">Total Record : <?php echo $total_rows ?></a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <?php echo $pagination ?>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <div class="sidebar" data-active-color="rose" data-background-color="black"
-            data-image="../../assets/img/sidebar-1.jpg">
+            data-image="<?=base_url('assets/img/sidebar-1.jpg')?>">
             <div class="logo">
                 <a href="http://www.creative-tim.com/" class="simple-text">
                     Creative Tim
@@ -13,7 +13,7 @@
             <div class="sidebar-wrapper">
                 <div class="user">
                     <div class="photo">
-                        <img src="../../assets/img/faces/avatar.jpg" />
+                        <img src="<?=base_url('assets/img/faces/avatar.jpg')?>" />
                     </div>
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -57,10 +57,27 @@
                     <li>
                         <a href="<?=base_url('subnumerator')?>">
                             <i class="material-icons">dashboard</i>
-                            <p>Sub Numerator / Denumerator</p>
+                            <p>Sub Num-Denum</p>
                         </a>
                     </li>
-                  
+                    <li>
+                        <a href="<?=base_url('starkes')?>">
+                            <i class="material-icons">dashboard</i>
+                            <p>Starkes Unit</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url('starkes_monitoring')?>">
+                            <i class="material-icons">dashboard</i>
+                            <p>Starkes Monitoring</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url('starkes_rs')?>">
+                            <i class="material-icons">dashboard</i>
+                            <p>Starkes RS</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -1,39 +1,37 @@
 <?php
 
 
-class Numerator_model extends CI_Model{
+class Subnumerator_model extends CI_Model
+{
 
     public $table_unit = 'view_temp_bidang';
-    public $table = 'master_numerator';
-
-
     public $id_unit = 'tb_id';
-    public $id='idnum';
-
     public $order_unit = 'DESC';
-    public $order='DESC';
 
-    function __construct()
+    public $tabelx  = 'master_subnumerator';
+    public $id      = 'idsubnum';
+    public $order   = 'DESC';
+
+    public function get_all_unit()
     {
-        parent::__construct();
-    }
-
-    public function get_all_unit(){
         $this->db->order_by($this->id_unit, $this->order_unit);
         return $this->db->get($this->table_unit)->result();
     }
 
-    public function get_all_kode(){
-        $this->db->order_by('id_kode', $this->order_unit);
-        return $this->db->get('kode')->result();
-    }
-
-
-    public function get_all_indikator($unit){
+    public function get_all_indikator($unit)
+    {
         $this->db->select('id as value,judul as text');
         $this->db->where('unit', $unit);
         $this->db->where('isdeleted', '0');
         return $this->db->get('master_indikator')->result();
+    }
+
+    public function get_all_deskripsi($indikator)
+    {
+        $this->db->select('idnum,deskripsi,jenis');
+        $this->db->where('kdindikator', $indikator);
+        $this->db->where('isdeletednum', '0');
+        return $this->db->get('view_numerator')->result();
     }
 
      // get all
@@ -41,12 +39,12 @@ class Numerator_model extends CI_Model{
      {
          $this->db->order_by($this->id, $this->order);
           $this->db->where('isdeletednum', '0');
-         return $this->db->get('view_numerator')->result();
+         return $this->db->get('view_subnumerator')->result();
      }
  
       // get total rows
       function total_rows() {
-         $this->db->from('view_numerator');
+         $this->db->from('view_subnumerator');
          $this->db->where('isdeletednum', '0');
          return $this->db->count_all_results();
      }
@@ -55,7 +53,7 @@ class Numerator_model extends CI_Model{
      function total_rows_search($q = NULL)
      {
          $this->db->like($q);
-         $this->db->from('view_numerator');
+         $this->db->from('view_subnumerator');
          $this->db->where('isdeletednum', '0');
          return $this->db->count_all_results();
      }
@@ -70,10 +68,10 @@ class Numerator_model extends CI_Model{
          return $this->db->get('view_numerator')->result();
      }
 
-       // insert data
-    function insert($data)
+    // insert data
+    public function insert($data)
     {
-        $this->db->insert($this->table, $data);
+        $this->db->insert($this->tabelx, $data);
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 
@@ -81,20 +79,20 @@ class Numerator_model extends CI_Model{
     function update($id, $data)
     {
         $this->db->where($this->id, $id);
-        $this->db->update($this->table, $data);
+        $this->db->update($this->tabelx, $data);
     }
 
     // get data by id
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
-        return $this->db->get('view_numerator')->row();
+        return $this->db->get('view_subnumerator')->row();
     }
 
     // delete data
     function delete($id)
     {
         $this->db->where($this->id, $id);
-        $this->db->update($this->table, array('isdeletednum'=>'1'));
+        $this->db->update($this->tabelx, array('isdeletednum' => '1'));
     }
 }

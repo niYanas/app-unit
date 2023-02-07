@@ -34,6 +34,7 @@ class Indikator_model extends CI_Model{
     function get_limit_data()
     {
         $this->db->order_by($this->id, $this->order);
+       // $this->db->limit($limit, $start);
         $this->db->join('temp_bidang','temp_bidang.tb_id=master_indikator.unit','inner');
         $this->db->where('isdeleted', '0');
         return $this->db->get($this->table)->result();

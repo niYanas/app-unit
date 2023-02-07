@@ -15,8 +15,8 @@ class Home extends CI_Controller
 
     public function index()
     {
-        $data['data'] = $this->Data_model->get_data();
-        $this->template->load('template/template_backend', 'daftarindikator',$data);
+  
+        $this->template->load('template/template_backend', 'daftarindikator');
     }
 
     public function tambahIndikator()

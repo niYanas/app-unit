@@ -100,6 +100,6 @@
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?=base_url('')?>assets/js/demo.js"></script>
 <script>
-    $("#unit,#judul_indikator").select2();
+    $("#unit,#judul_indikator,#unit_monitoring,#kode_monitoring").select2();
 </script>
 </html>
